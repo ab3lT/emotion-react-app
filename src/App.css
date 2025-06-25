@@ -1,38 +1,351 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+App Container .app-container {
   min-height: 100vh;
+  background: #f8f9fa;
   display: flex;
   flex-direction: column;
+}
+
+/* Header */
+.header-container {
+  background: linear-gradient(90deg, #1e3a8a, #6366f1, #7c3aed);
+  color: #fff;
+  padding: 24px 0;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.header-highlight {
+  color: #facc15;
+}
+.header-authors {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.header-author {
+  color: #fde68a;
+}
+.header-institution {
+  color: #c7d2fe;
+  font-size: 0.95rem;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Emotion Demonstrator Layout */
+.emotion-demonstrator-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 8px;
+}
+.emotion-demonstrator-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .emotion-demonstrator-grid {
+    flex-direction: row;
+    gap: 32px;
+  }
+  .video-feed-section,
+  .analysis-panel-section {
+    flex: 1;
+  }
+}
+
+/* Video Feed */
+.video-feed-container {
+  background: #f1f5f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+}
+.video-feed-player {
+  position: relative;
+  margin-bottom: 16px;
+}
+.video-element,
+.canvas-element {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+}
+.canvas-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: #e5e7eb;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
 }
-
-.App-link {
-  color: #61dafb;
+.video-placeholder-text {
+  color: #64748b;
+  text-align: center;
+  font-size: 1rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.video-feed-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 600px) {
+  .video-feed-buttons {
+    flex-direction: row;
+    gap: 16px;
   }
-  to {
-    transform: rotate(360deg);
+}
+.webcam-btn,
+.upload-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #fff;
+}
+.webcam-btn.start-btn {
+  background: #2563eb;
+}
+.webcam-btn.start-btn:hover {
+  background: #1d4ed8;
+}
+.webcam-btn.stop-btn {
+  background: #dc2626;
+}
+.webcam-btn.stop-btn:hover {
+  background: #b91c1c;
+}
+.upload-btn {
+  background: #059669;
+}
+.upload-btn:hover {
+  background: #047857;
+}
+.file-input {
+  display: none;
+}
+
+/* Analysis Panel */
+.analysis-panel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Results Display */
+.results-display-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.results-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 12px;
+}
+.results-emotion {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 24px 8px;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+/* Probability Chart */
+.probability-chart-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+.probability-chart-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 12px;
+}
+.probability-chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 250px;
+}
+.probability-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.probability-bar-label {
+  width: 80px;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+.probability-bar-bg {
+  flex: 1;
+  height: 18px;
+  border-radius: 6px;
+  background: #e5e7eb;
+  overflow: hidden;
+  margin: 0 8px;
+}
+.probability-bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s;
+}
+.bar-yellow {
+  background: #fde047;
+}
+.bar-blue {
+  background: #60a5fa;
+}
+.bar-red {
+  background: #f87171;
+}
+.bar-pink {
+  background: #f472b6;
+}
+.bar-gray {
+  background: #a3a3a3;
+}
+.bar-purple {
+  background: #a78bfa;
+}
+.bar-green {
+  background: #34d399;
+}
+.probability-bar-value {
+  width: 40px;
+  text-align: right;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Project Info */
+.project-info-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.project-info-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 12px;
+}
+.project-info-description {
+  color: #64748b;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+.project-info-facts {
+  margin-bottom: 12px;
+}
+.project-info-facts-title {
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+.project-info-facts-list {
+  list-style: disc inside;
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-left: 16px;
+}
+.project-info-link {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.project-info-link:hover {
+  background: #1d4ed8;
+}
+
+/* Footer */
+.footer-container {
+  background: #1e293b;
+  color: #fff;
+  padding: 20px 0;
+  margin-top: 32px;
+}
+.footer-content {
+  text-align: center;
+}
+.footer-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+.footer-tech {
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+.footer-copyright {
+  font-size: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .header-title {
+    font-size: 1.2rem;
+  }
+  .main-content {
+    padding: 0 4px;
+  }
+  .emotion-demonstrator-container {
+    padding: 12px 2px;
+  }
+  .video-feed-container,
+  .analysis-panel-container,
+  .project-info-container,
+  .results-display-container,
+  .probability-chart-container {
+    padding: 10px;
+  }
+  .footer-container {
+    padding: 12px 0;
   }
 }
