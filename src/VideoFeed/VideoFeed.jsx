@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
-import reactLogo from "../assets/react.svg"; // adjust path if needed
+import React, { useRef, useEffect } from "react";
+import reactLogo from "../assets/react.svg";
+import axios from "axios";
 
 const VideoFeed = ({
   isWebcamOn,
@@ -8,8 +9,48 @@ const VideoFeed = ({
   onStartWebcam,
   onStopWebcam,
   onUpload,
+  setEmotionResult,
 }) => {
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    let interval;
+    if (isWebcamOn && videoRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+
+      const captureFrame = async () => {
+        if (video.readyState === 4) {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          canvas.toBlob(async (blob) => {
+            const formData = new FormData();
+            formData.append("file", blob, "frame.jpg");
+            try {
+              const res = await axios.post(
+                "https://emotion-backend-6b7e5b8b9951.herokuapp.com/predict",
+                formData
+              );
+              if (res.data.results.length > 0) {
+                setEmotionResult(res.data.results[0]);
+              } else {
+                setEmotionResult({ label: "No face detected" });
+              }
+            } catch (error) {
+              console.error("Prediction error:", error);
+              setEmotionResult({ label: "Error predicting emotion" });
+            }
+          }, "image/jpeg");
+        }
+      };
+
+      interval = setInterval(captureFrame, 3000); // every 3 seconds
+    }
+    return () => clearInterval(interval);
+  }, [isWebcamOn, videoRef, canvasRef, setEmotionResult]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -34,7 +75,6 @@ const VideoFeed = ({
           className="absolute top-0 left-0 w-full h-full rounded-lg border border-slate-300 bg-transparent pointer-events-none"
           style={{ display: isWebcamOn ? "block" : "none" }}
         />
-        {/* Rectangle overlay for scan area */}
         {isWebcamOn && (
           <div
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
@@ -108,14 +148,14 @@ const Header = () => {
         />
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 drop-shadow-md">
-            Emotion Classification Using CNNs:{" "}
+            Emotion Classification Using CNNs: {" "}
             <span className="text-yellow-300">
               The Mini-Xception Model in Action
             </span>
           </h1>
           <p className="text-base sm:text-lg mb-1 font-medium text-blue-100">
-            Prepared by: <span className="text-yellow-200">Abel Tadesse</span>,{" "}
-            <span className="text-yellow-200">Simreteab mekbib</span>,{" "}
+            Prepared by: <span className="text-yellow-200">Abel Tadesse</span>, {" "}
+            <span className="text-yellow-200">Simreteab mekbib</span>, {" "}
             <span className="text-yellow-200">Awol Alebe</span>
           </p>
           <p className="text-indigo-200 text-xs sm:text-base font-light">
