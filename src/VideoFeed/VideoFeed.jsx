@@ -126,3 +126,5 @@ const Header = () => {
     </header>
   );
 };
+
+export default VideoFeed;
