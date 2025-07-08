@@ -1,71 +1,128 @@
-# Getting Started with Create React App
+# my_lerd
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern web application built with **React**, **Vite**, and **Tailwind CSS**.
+
+## Table of Contents
+
+- [my\_lerd](#my_lerd)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [Project Structure](#project-structure)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Running the Development Server](#running-the-development-server)
+    - [Building for Production](#building-for-production)
+    - [Previewing the Production Build](#previewing-the-production-build)
+  - [Available Scripts](#available-scripts)
+  - [Customization](#customization)
+  - [License](#license)
+
+## Overview
+
+my_lerd is a modular and scalable web application designed for rapid development and easy maintenance. It leverages the power of React for UI, Vite for fast builds and hot module replacement, and Tailwind CSS for utility-first styling.
+
+## Features
+
+- ⚡️ Fast development with Vite
+- 🎨 Styled with Tailwind CSS
+- 🧩 Modular component structure
+- 📦 Easy to extend and maintain
+
+## Project Structure
+
+```
+my_lerd/
+├── eslint.config.js
+├── index.html
+├── package.json
+├── postcss.config.js
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── AnalysisPanel/
+│   │   ├── AnalysisPanel.jsx
+│   │   └── ProbabilityChart.jsx
+│   ├── App.css
+│   ├── App.jsx
+│   ├── assets/
+│   │   └── react.svg
+│   ├── EmotionDemonstrator/
+│   │   └── EmotionDemonstrator.jsx
+│   ├── Header/
+│   │   └── Header.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   ├── ProjectInfo/
+│   │   └── ProjectInfo.jsx
+│   ├── ResultsDisplay/
+│   │   └── ResultsDisplay.jsx
+│   └── VideoFeed/
+│       └── VideoFeed.jsx
+├── tailwind.config.js
+└── vite.config.js
+```
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd my_lerd
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+### Running the Development Server
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+The app will be available at [http://localhost:5173](http://localhost:5173) by default.
+
+### Building for Production
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+### Previewing the Production Build
+
+```bash
+npm run preview
+# or
+yarn preview
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `dev` - Start the development server
+- `build` - Build the app for production
+- `preview` - Preview the production build locally
 
-### `npm start`
+## Customization
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Tailwind CSS**: Edit `tailwind.config.js` to customize your design system.
+- **Vite Config**: Modify `vite.config.js` for advanced build options.
+- **Components**: Add or update components in the `src/` directory as needed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## License
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# emotion-react-app" 
+This project is licensed under the MIT License.
